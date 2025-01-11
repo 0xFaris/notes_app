@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/widgets/custom_appbar.dart';
+import 'package:notes_app/widgets/notes_item.dart';
 
 class NotesViewBody extends StatelessWidget {
   const NotesViewBody({super.key});
@@ -7,9 +8,11 @@ class NotesViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
+      children: [
         SizedBox(height: 40),
         CustomAppBar(),
+        SizedBox(height: 40),
+        NotesItem(),
       ],
     );
   }
