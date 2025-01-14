@@ -4,7 +4,7 @@ import 'package:notes_app/constants.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     required this.hintText,
-    required this.maxLines,
+    this.maxLines = 1,
     super.key,
   });
   final String? hintText;
