@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/constants.dart';
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField({
+  const CustomTextField({
     required this.hintText,
     required this.maxLines,
     super.key,
   });
-  String? hintText;
-  int? maxLines;
+  final String? hintText;
+  final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return Padding(
