@@ -1,4 +1,4 @@
 import 'package:flutter/material.dart';
 
 const kPrimaryColor = Colors.greenAccent;
-const kNotesBox = 'notes_box';
+const kNotesBoxKey = 'notes_box';
