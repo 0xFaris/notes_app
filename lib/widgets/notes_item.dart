@@ -20,7 +20,7 @@ class NotesItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(top: 30, bottom: 30, left: 10),
         decoration: BoxDecoration(
-          color: Colors.yellow,
+          color: Color(notes.color),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(

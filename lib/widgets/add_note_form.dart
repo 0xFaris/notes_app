@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
-import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/notes_model.dart';
 import 'package:notes_app/widgets/custom_button.dart';
+import 'package:notes_app/widgets/custom_color_items.dart';
 import 'package:notes_app/widgets/custom_textfeild.dart';
 
 class AddNoteForm extends StatefulWidget {
@@ -51,6 +51,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
             maxLines: 5,
           ),
           const SizedBox(height: 16),
+          CircleAvatarListView(),
+          const SizedBox(height: 26),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return CustomButton(
@@ -62,7 +64,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         title: title!,
                         description: subTitle!,
                         date: DateFormat('yyyy/MM/dd').format(DateTime.now()),
-                        color: Colors.amber.value);
+                        color: Colors.red.value);
                     BlocProvider.of<AddNoteCubit>(context).addNote(notes);
                   } else {
                     autovalidateMode = AutovalidateMode.always;

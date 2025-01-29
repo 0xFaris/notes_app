@@ -4,6 +4,7 @@ import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes_app/models/notes_model.dart';
 import 'package:notes_app/widgets/custom_appbar.dart';
 import 'package:notes_app/widgets/custom_textfeild.dart';
+import 'package:notes_app/widgets/edit_note_custom_colors_list.dart';
 
 class EditNoteView extends StatefulWidget {
   const EditNoteView({super.key, required this.notes});
@@ -28,6 +29,8 @@ class _EditNoteViewState extends State<EditNoteView> {
               widget.notes.title = title ?? widget.notes.title;
               widget.notes.description =
                   description ?? widget.notes.description;
+
+              widget.notes.save();
               BlocProvider.of<NotesCubit>(context).fetchData();
               Navigator.pop(context);
             },
@@ -49,6 +52,9 @@ class _EditNoteViewState extends State<EditNoteView> {
             },
           ),
           SizedBox(height: 20),
+          EditCircleAvatarListView(
+            note: widget.notes,
+          ),
         ],
       ),
     ));
