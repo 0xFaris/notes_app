@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/widgets/custom_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({required this.text, required this.icon, super.key});
+  const CustomAppBar(
+      {required this.text, required this.icon, super.key, this.onPressed});
   final String text;
   final IconData? icon;
-
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,8 +17,17 @@ class CustomAppBar extends StatelessWidget {
             text,
             style: TextStyle(fontSize: 30),
           ),
-          CustomIcon(
-            icon: icon,
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.grey[800],
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: IconButton(
+              onPressed: onPressed,
+              icon: Icon(icon),
+            ),
           )
         ],
       ),

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notes_app/models/notes_model.dart';
 import 'package:notes_app/widgets/custom_appbar.dart';
-import 'package:notes_app/widgets/custom_button.dart';
 import 'package:notes_app/widgets/custom_textfeild.dart';
 
-class EditNoteView extends StatelessWidget {
-  const EditNoteView({super.key});
-  static const id = 'edit_note_view';
+class EditNoteView extends StatefulWidget {
+  const EditNoteView({super.key, required this.notes});
+  final NotesModel notes;
+
   @override
-  Widget build(BuildContext context) {
-    return EditNoteViewBody();
-  }
+  State<EditNoteView> createState() => _EditNoteViewState();
 }
 
-class EditNoteViewBody extends StatelessWidget {
-  const EditNoteViewBody({super.key});
-
+class _EditNoteViewState extends State<EditNoteView> {
+  String? title, description;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,16 +24,31 @@ class EditNoteViewBody extends StatelessWidget {
         children: [
           SizedBox(height: 50),
           CustomAppBar(
+            onPressed: () {
+              widget.notes.title = title ?? widget.notes.title;
+              widget.notes.description =
+                  description ?? widget.notes.description;
+              BlocProvider.of<NotesCubit>(context).fetchData();
+              Navigator.pop(context);
+            },
             text: 'Edit Note',
-            icon: Icons.edit,
+            icon: Icons.edit_attributes,
           ),
           SizedBox(height: 20),
           CustomTextField(
-            hintText: 'Title',
+            onChanged: (value) {
+              title = value;
+            },
+            hintText: widget.notes.title,
           ),
-          CustomTextField(hintText: 'Description', maxLines: 10),
+          CustomTextField(
+            hintText: widget.notes.description,
+            maxLines: 10,
+            onChanged: (value) {
+              description = value;
+            },
+          ),
           SizedBox(height: 20),
-          CustomButton()
         ],
       ),
     ));
